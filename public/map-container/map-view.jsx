@@ -19,7 +19,7 @@ var MapView = React.createClass({
             maxZoom: 18
         }).addTo(map);
 
-        //map.on('click', this.onMapClick);
+        map.on('click', this.onMapClick);
 
         this.props.features.map(function(feature) {
             L.marker(feature.coords, 13).addTo(map);

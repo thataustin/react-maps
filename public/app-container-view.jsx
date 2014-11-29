@@ -1,7 +1,7 @@
 var React = require('react');
-var FeatureListView = require('./featureListView');
-var MapView = require('./mapView');
-var config = require('../config');
+var FeatureListView = require('./sidebar-left/feature-list-view');
+var MapView = require('./map-container/map-view');
+var config = require('./config');
 
 var AppContainer = React.createClass({
 
