@@ -1,0 +1,13 @@
+#feature-list {
+  width: 23%;
+  height: 98%;
+  float: left;
+  padding: 1%;
+}
+
+#map {
+  height: 98%;
+  width: 73%;
+  float: right;
+  padding: 1%;
+}

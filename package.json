@@ -1,0 +1,23 @@
+{
+  "name": "react-maps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "gulp": "^3.8.10",
+    "gulp-browserify": "^0.5.0",
+    "jquery-browserify": "^1.8.1",
+    "leaflet": "^0.7.3",
+    "react": "^0.12.1",
+    "reactify": "^0.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "scripts": {
+    "postinstall": "ln -s node_modules/leaflet/dist/images/ public/images/leaflet" 
+  },
+  "author": "",
+  "license": "ISC"
+}
