@@ -9,10 +9,10 @@ var FeatureListView = React.createClass({
            var key = 'feature-list-key' + feature.id;
 
            return (
-               <div key={key}>
-                    <h5>{feature.name}</h5>
-                    <span>Coordinates: {feature.coords[0]}, {feature.coords[1]}</span>
-               </div>
+               <li key={key}>
+                    <span className="subheader">{feature.name}</span>
+                    <span className="details">Coordinates: {feature.coords[0]}, {feature.coords[1]}</span>
+               </li>
            )
        }
 

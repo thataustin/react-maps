@@ -5,6 +5,36 @@
   padding: 1%;
 }
 
+#feature-list li {
+  list-style-type: none;
+  padding: 5px;
+  border-bottom: #eee 1px solid;
+}
+
+.subheader {
+  display: block;
+  font-family: Roboto,Arial,sans-serif;
+  font-size: 1.1em;
+  font-weight: bolder;
+}
+
+.inactive {
+  color: #ddd;
+}
+
+.details {
+  font-family: sans-serif;
+  font-size: .9em;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+#feature-list h5 {
+  margin: 0px;
+}
+
 .map {
   height: 98%;
   width: 73%;
