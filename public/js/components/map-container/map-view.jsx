@@ -14,6 +14,9 @@ var MapView = React.createClass({
     render: function() {
 
         function getMarker (feature) {
+
+            if (!feature.selected) return false;
+
             var key = 'marker' + feature.id;
             return (
                 <Marker key={key} position={feature.coords}></Marker>
@@ -21,6 +24,7 @@ var MapView = React.createClass({
         }
 
         var markers = _.map(this.props.features, getMarker);
+        markers = _.compact(markers);
 
         return (
             <Map className="map" key="map1" center={this.props.mapCenter} zoom={this.props.mapZoom} maxZoom={config.map.maxZoom} >
