@@ -4,8 +4,9 @@ var Leaflet = require('react-leaflet');
 
 var Map = Leaflet.Map;
 var Popup = Leaflet.Popup;
-var Marker = Leaflet.Marker;
 var TileLayer = Leaflet.TileLayer;
+var LeafletMarker = Leaflet.Marker;
+var FeatureListActionCreator = require('../../actions/feature-list-action-creator');
 
 var config = require('../../config');
 
@@ -19,27 +20,43 @@ var MapView = React.createClass({
 
     render: function() {
 
-        function getMarker (feature) {
+        var selectedFeatures = _.filter(this.props.features, function (feature) {
+            return feature.selected;
+        });
 
-            if (!feature.selected) return false;
-
-            var key = 'marker' + feature.id;
-            return (
-                <Marker key={key} position={feature.coords}></Marker>
-            );
+        function _onClick (featureId) {
+            FeatureListActionCreator.clickFeature(featureId);
         }
 
-        var markers = _.map(this.props.features, getMarker);
-        markers = _.compact(markers);
+        function _onMoveend (featureId, e) {
+            var coords = [e.target._latlng.lat, e.target._latlng.lng];
+            FeatureListActionCreator.moveFeature(featureId, coords);
+        }
+
+        function getMarker (feature) {
+            var key = 'marker-' + feature.id;
+            return (
+                <LeafletMarker key={key} position={feature.coords} draggable="true"
+                    onClick={_onClick.bind(null, feature.id)}
+                    onLeafletMoveend={_onMoveend.bind(null, feature.id)}
+                    onLeafletDrag={_onMoveend.bind(null, feature.id)}
+                ></LeafletMarker>
+            );
+        };
 
         return (
-            <Map className="map" key="map1" center={this.props.mapCenter} zoom={this.props.mapZoom} maxZoom={config.map.maxZoom} >
+            <Map className="map" key="map1"
+                center={this.props.mapCenter}
+                zoom={this.props.mapZoom}
+                maxZoom={config.map.maxZoom}>
                 <TileLayer url={config.map.tileLayerUrl} attribution={config.map.attribution} />
-                {markers}
+                {_.map(selectedFeatures, getMarker.bind(this))}
             </Map>
         );
 
-    }
+    },
+
+
 });
 
 module.exports = MapView;
