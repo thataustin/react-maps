@@ -1,17 +1,19 @@
 var React = require('react');
-var FeatureListView = require('./sidebar-left/feature-list-view');
-var MapView = require('./map-container/map-view');
+var FeatureListView = require('./components/sidebar-left/feature-list-view');
+var MapView = require('./components/map-container/map-view');
 var config = require('./config');
+var FeatureStore = require('./stores/feature-store');
+var _ = require('underscore');
 
 var AppContainer = React.createClass({
 
+    componentDidMount: function() {
+        FeatureStore.addChangeListener(this._onChange);
+    },
+
     getInitialState: function() {
         return {
-            features: [
-                {"name": "Bills Poolhall", coords: [37.7756, -122.41]},
-                {"name": "Family Billiards", coords: [37.7, -122.4193]},
-                {"name": "Thallassa - RIP", coords: [37.7, -122.41]}
-            ],
+            features: FeatureStore.getAll(),
             mapCenter: config.map.defaultMapCenter,
             mapZoom: config.map.defaultZoomLevel
         };
@@ -19,11 +21,20 @@ var AppContainer = React.createClass({
 
     render: function () {
         return (
-            <div>
+            <div id="app-container">
                 <FeatureListView features={this.state.features} />
                 <MapView features={this.state.features} mapCenter={this.state.mapCenter} mapZoom={this.state.mapZoom} />
             </div>
+
         );
+    },
+
+    _onChange: function() {
+        this.setState(_.extend(
+            {},
+            this.state,
+            { features: FeatureStore.getAll() }
+        ));
     }
 
 });

@@ -5,7 +5,7 @@ var rename = require('gulp-rename');
 // Basic usage
 gulp.task('browserify', function() {
 
-  return gulp.src('public/main.jsx', {read: false})
+  return gulp.src('public/js/main.jsx', {read: false})
     .pipe(browserify({
       transform : 'reactify',
       extensions: ['.jsx']
