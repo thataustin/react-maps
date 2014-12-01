@@ -17,7 +17,7 @@ var FeatureListView = React.createClass({
        }
 
        return (
-           <ul id="feature-list" key="feature-list1">
+           <ul className="feature-list" key="feature-list1">
                 { _.map(this.props.features, renderFeature) }
            </ul>
        )

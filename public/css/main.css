@@ -1,11 +1,11 @@
-#feature-list {
+.feature-list {
   width: 23%;
   height: 98%;
   float: left;
   padding: 1%;
 }
 
-#feature-list li {
+.feature-list li {
   list-style-type: none;
   padding: 5px;
   border-bottom: #eee 1px solid;
@@ -29,10 +29,6 @@
 
 li:last-child {
   border-bottom: none;
-}
-
-#feature-list h5 {
-  margin: 0px;
 }
 
 .map {
