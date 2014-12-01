@@ -65,6 +65,9 @@ FeatureStore.dispatchToken = Dispatcher.register(function(payload) {
             FeatureStore.emitChange();
             break;
 
+        case ActionTypes.CLICK_FEATURE:
+            _features[action.featureId].selected = ! _features[action.featureId].selected;
+            FeatureStore.emitChange();
         default:
         // do nothing
     }

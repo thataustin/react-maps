@@ -5,7 +5,8 @@ module.exports = {
     ActionTypes: keyMirror({
         CREATE_FEATURE: null,
         RECEIVE_RAW_CREATED_FEATURE: null,
-        RECEIVE_RAW_FEATURES: null
+        RECEIVE_RAW_FEATURES: null,
+        CLICK_FEATURE: null
     }),
 
     PayloadSources: keyMirror({

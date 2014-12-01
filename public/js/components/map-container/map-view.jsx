@@ -11,6 +11,12 @@ var config = require('../../config');
 
 var MapView = React.createClass({
 
+    propTypes: {
+        mapCenter: React.PropTypes.array,
+        mapZoom: React.PropTypes.number,
+        features: React.PropTypes.object
+    },
+
     render: function() {
 
         function getMarker (feature) {
