@@ -20,7 +20,7 @@ var MapView = React.createClass({
 
     render: function() {
 
-        var selectedFeatures = _.filter(this.props.features, function (feature) {
+        var selectedFeatures = this.props.features.filter(function (feature) {
             return feature.selected;
         });
 
@@ -42,7 +42,7 @@ var MapView = React.createClass({
                     onLeafletDrag={_onMoveend.bind(null, feature.id)}
                 ></LeafletMarker>
             );
-        };
+        }
 
         return (
             <Map className="map" key="map1"
@@ -50,12 +50,11 @@ var MapView = React.createClass({
                 zoom={this.props.mapZoom}
                 maxZoom={config.map.maxZoom}>
                 <TileLayer url={config.map.tileLayerUrl} attribution={config.map.attribution} />
-                {_.map(selectedFeatures, getMarker.bind(this))}
+                { selectedFeatures.map(getMarker.bind(this)) }
             </Map>
         );
 
-    },
-
+    }
 
 });
 

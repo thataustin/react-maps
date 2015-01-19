@@ -1,21 +1,14 @@
-var Dispatcher = require('../dispatcher');
-var Constants = require('../constants');
+var reactor = require('../reactor');
+var constants = require('../constants');
 
 module.exports = {
 
     clickFeature: function(featureId) {
-        Dispatcher.handleViewAction({
-            type: Constants.ActionTypes.CLICK_FEATURE,
-            featureId: featureId
-        });
+        reactor.dispatch(constants.ActionTypes.CLICK_FEATURE, featureId);
     },
 
     moveFeature: function(featureId, coords) {
-        Dispatcher.handleViewAction({
-            type: Constants.ActionTypes.FEATURE_MOVED,
-            featureId: featureId,
-            coords: coords
-        })
+        reactor.dispatch(constants.ActionTypes.FEATURE_MOVED, {featureId: featureId, coords: coords})
     }
 
 };

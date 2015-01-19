@@ -1,19 +1,25 @@
 var React = require('react');
+var _ = require('underscore');
+var ReactorMixin = require('nuclear-react-mixin');
+
+var config = require('./config');
+var reactor = require('./reactor');
 var FeatureListView = require('./components/sidebar-left/feature-list-view');
 var MapView = require('./components/map-container/map-view');
-var config = require('./config');
-var FeatureStore = require('./stores/feature-store');
-var _ = require('underscore');
+
 
 var AppContainer = React.createClass({
 
-    componentDidMount: function() {
-        FeatureStore.addChangeListener(this._onChange);
+    mixins: [ReactorMixin(reactor)],
+
+    getDataBindings: function() {
+        return {
+            features: ['features']
+        }
     },
 
     getInitialState: function() {
         return {
-            features: FeatureStore.getAll(),
             mapCenter: config.map.defaultMapCenter,
             mapZoom: config.map.defaultZoomLevel
         };
@@ -27,14 +33,6 @@ var AppContainer = React.createClass({
             </div>
 
         );
-    },
-
-    _onChange: function() {
-        this.setState(_.extend(
-            {},
-            this.state,
-            { features: FeatureStore.getAll() }
-        ));
     }
 
 });
